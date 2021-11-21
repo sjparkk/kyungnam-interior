@@ -21,7 +21,6 @@ logging.level:
   org.hibernate.SQL: debug
   root: info
   # org.hibernate.type: trace
-  
 
 
 
