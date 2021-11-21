@@ -20,25 +20,25 @@
         </header>
         <div class="child-page-listing">
             <div class="grid-container" id="work-wrapper">
-                <article class="location-listing" th:each="work : ${workAllList}">
-                    <a class="location-title" th:href="@{/work/detail(id=${work.id})}">
-                        <h5 th:text="${work.title}"></h5>
-                    </a>
-                    <div class="location-image">
-                        <a th:href="@{/work/detail(id=${work.id})}">
-                            <img width="300" height="169" th:src="@{${work.thumnailImagePath}}">
+                    <article class="location-listing" th:each="work : ${workAllList}">
+                        <a class="location-title" th:href="@{/work/detail(id=${work.id})}">
+                            <h5 th:text="${work.title}"></h5>
                         </a>
-                    </div>
-                    <input type = "hidden" th:value="${work.id + ' ' + work.isMain}" >
-                </article>
+                        <div class="location-image">
+                            <a th:href="@{/work/detail(id=${work.id})}">
+                                <img width="300" height="169" th:src="@{${work.thumnailImagePath}}"> <!-- th:src="@{/img/}+${work.thumnailImagePath}" -->
+                            </a> <!--ex_img3.png -->
+                        </div>
+                        <input type = "hidden" th:value="${work.id + ' ' + work.isMain}" >
+                    </article>
             </div>
+            <!-- end grid container -->
         </div>
         <footer id="common-footer">
         </footer>
     </section>
-
+    <script src="/js/scrollFollow.js"></script>
     <script>
-        // 정렬
         // $(document).on("change", "#select-order-wrapper", function(e){
         //     console.log(e.target.value.split('평')[0]);
         //     let workAttr = "";
@@ -71,7 +71,7 @@
         //                         </a>
         //                         <div className="location-image" class="location-image">
         //                             <a href="#">
-        //                                 <img width="300" height="169" src="/img/1.jpg">
+        //                                 <img width="300" height="169" src="/img/ex_img3.png">
         //                             </a>
         //                         </div>
         //                         <input type="hidden" value="${result[i].id}">

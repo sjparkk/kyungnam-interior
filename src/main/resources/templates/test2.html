@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    #aside {
+      position: fixed;
+      right: 50px;
+      top: 125px;
+      width: 150px;
+      box-sizing: border-box;
+      z-index: 100;
+    }
+    #aside .work-process {
+      width: 150px;
+    }
+    .blind {
+      position: absolute;
+      left: -1000000px;
+    }
+
+      .estimate-inquiry.floating {
+        width: 210px;
+        margin-top: 0;
+      }
+    .estimate-inquiry {
+      position: relative;
+      width: 370px;
+      height: 185px;
+      margin: -90px auto 0;
+      text-align: center;
+      z-index: 100;
+    }
+
+    .estimate-inquiry .inquiry {
+      display: block;
+      width: 185px;
+      height: 185px;
+      padding: 32px;
+      box-sizing: border-box;
+      background: #ec6100 url(../images/icon/icon_arrow_03.png) no-repeat center 85%;
+      background-size: 24px;
+    }
+    .estimate-inquiry .inquiry.check {
+      background: #333 url(../images/icon/icon_check_01.png) no-repeat center 85%;
+      background-size: 24px;
+    }
+
+    .estimate-inquiry a {
+      float: left;
+    }
+
+
+    .trans300 {
+      -webkit-transition: all 300ms;
+      transition: all 300ms;
+    }
+
+    #aside .call-center {
+      /* margin-top: 460px; */
+      margin-top: 150px;
+      padding: 25px 0;
+      text-align: center;
+      border: 1px solid #666;
+      background: #fff;
+    }
+    #aside.sub .call-center {
+      margin-top: 200px;
+    }
+    a {
+      color: #666;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    #aside .call-center .tit {
+      display: block;
+      padding-bottom: 15px;
+      font-family: segoe UI;
+      font-size: 15px;
+      color: #333;
+      background: url(../images/icon/bullet_callcenter.png) no-repeat center bottom;
+    }
+
+
+  </style>
+</head>
+<body>
+<h1>dddd</h1>
+<h1>dddd</h1><h1>dddd</h1><h1>dddd</h1>
+<h1>dddd</h1><h1>dddd</h1><h1>dddd</h1><h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1><h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1><h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+<h1>dddd</h1>
+
+
+
+
+
+<section style="margin: 5% 15% 5% 15%; background-color: #fff8dc;">
+  <section id="aside" class="sub" style="top: 125px;">
+    <div class="work-process blind">
+      <a href="#">공사진행<br>절차</a>
+    </div>
+    <div class="estimate-inquiry floating">
+      <a href="../estimate/estimate.php" class="inquiry trans300">
+        <strong class="title">견적문의</strong>
+        <p class="exp">
+          자체 개발한<br>
+          <strong>“BARO”</strong> 시스템을<br>
+          이용한 견적서비스
+        </p>
+      </a>
+      <a href="../estimate/estimate_check.php" class="inquiry check trans300">
+        <strong class="title">견적조회</strong>
+        <p class="exp">
+          견적문의 하신<br>
+          내용을 조회하실 수<br>
+          있습니다.
+        </p>
+      </a>
+    </div>
+    <div class="call-center">
+      <strong class="tit"><a href="../estimate/estimate_hanssem.php" class="inquiry check trans300">CALL CENTER</a></strong>
+      <ul>
+        <li>1899-0503</li>
+      </ul>
+    </div>
+  </section>
+</section>
+</body>
+</html>
