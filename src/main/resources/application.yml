@@ -1,0 +1,6 @@
+server:
+#  address: localhost
+  port: 50000
+spring:
+  profiles:
+    default: local
