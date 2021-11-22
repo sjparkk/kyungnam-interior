@@ -38,4 +38,17 @@ public class BannerRepositoryTest {
         });
     }
 
+    @Order(3)
+    @Test
+    public void update() {
+        Optional<Banner> banner = bannerRepository.findById(1L);
+
+        banner.ifPresent(selectBanner -> {
+            selectBanner.setViewOrder(2);
+            selectBanner.setImagePath("path2.jpg");
+            Banner newBanner = bannerRepository.save(selectBanner);
+            System.out.println("update banner : " + newBanner);
+        });
+    }
+
 }
