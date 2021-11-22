@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -62,4 +63,11 @@ public class BannerRepositoryTest {
         Assertions.assertFalse(deleteBanner.isPresent()); // false
     }
 
+    @Test
+    @DisplayName("반환된 banner 개수가 4미만이여야 함(viewOrder 1,2,3만 리스팅 )")
+    public void getBannerByViewOrder_bannerLessThan4Test() {
+        List<Banner> bannerByViewOrder = bannerRepository.getBannerByViewOrder();
+
+        Assertions.assertTrue(bannerByViewOrder.size() < 4);
+    }
 }
