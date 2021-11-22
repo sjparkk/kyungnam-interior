@@ -8,6 +8,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BannerRepositoryTest {
@@ -29,6 +31,11 @@ public class BannerRepositoryTest {
     @Order(2)
     @Test
     public void read() {
+        Optional<Banner> banner = bannerRepository.findById(1L);
+        //ifPresent() - Optional 객체가 감싸고 있는 값이 존재할 경우에만 실행 로직을 함수형 인자로 넘김
+        banner.ifPresent(selectBanner -> {
+            System.out.println("banner : " + selectBanner);
+        });
     }
 
 }
