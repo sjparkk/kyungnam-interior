@@ -1,10 +1,7 @@
 package com.kninterior.repository;
 
 import com.kninterior.domain.Banner;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -49,6 +46,20 @@ public class BannerRepositoryTest {
             Banner newBanner = bannerRepository.save(selectBanner);
             System.out.println("update banner : " + newBanner);
         });
+    }
+
+    @Order(4)
+    @Test
+    public void delete() {
+        Optional<Banner> banner = bannerRepository.findById(1L);
+
+        Assertions.assertTrue(banner.isPresent()); // true
+        banner.ifPresent(selectBanner -> {
+            bannerRepository.delete(selectBanner);
+        });
+
+        Optional<Banner> deleteBanner = bannerRepository.findById(1L);
+        Assertions.assertFalse(deleteBanner.isPresent()); // false
     }
 
 }
