@@ -35,4 +35,17 @@ class WorkRepositoryTest {
             log.info("work : " + selectWork);
         });
     }
+
+    @Order(3)
+    @Test
+    public void update() {
+        Optional<Work> work = workRepository.findById(1L);
+
+        work.ifPresent(selectWork -> {
+            selectWork.setThumnailImagePath("test2.jpg");
+            selectWork.setCategory(40);
+            workRepository.save(selectWork);
+        });
+    }
+
 }
