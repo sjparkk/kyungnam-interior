@@ -82,4 +82,28 @@ class WorkRepositoryTest {
         Assertions.assertEquals(3, workByIsMain.stream().filter(Work::getIsMain).count());
     }
 
+    @Test
+    @DisplayName("category 별로 select")
+    public void getWorkByCategory_categorySelectTest() {
+        Work work1 = Work.builder()
+                .category(20)
+                .build();
+        workRepository.save(work1);
+        Work work2 = Work.builder()
+                .category(30)
+                .build();
+        workRepository.save(work2);
+        Work work3 = Work.builder()
+                .category(40)
+                .build();
+        workRepository.save(work3);
+        Work work4 = Work.builder()
+                .category(20)
+                .build();
+        workRepository.save(work4);
+
+        List<Work> workByCategory = workRepository.getWorkByCategory(20);
+        Assertions.assertEquals(2, workByCategory.size());
+    }
+
 }
