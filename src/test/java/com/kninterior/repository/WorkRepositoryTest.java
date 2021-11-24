@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -21,7 +22,6 @@ class WorkRepositoryTest {
     public void create() {
         Work work = new Work(20,"홍은동","test.jpg","빌라","빌라입니다.");
         Work newWork = workRepository.save(work);
-        log.info("newWork : " + newWork);
     }
 
     @Order(2)
@@ -29,7 +29,6 @@ class WorkRepositoryTest {
     public void read() {
         Optional<Work> work = workRepository.findById(1L);
         work.ifPresent(selectWork -> {
-            log.info("work : " + selectWork);
         });
     }
 
@@ -59,5 +58,28 @@ class WorkRepositoryTest {
         Assertions.assertFalse(deleteWork.isPresent()); // false
     }
 
+    @Test
+    @DisplayName("isMain true인 work만 반환")
+    public void getWorkByIsMain_onlyTrueValuesTest() {
+        Work work1 = Work.builder()
+                .isMain(true)
+                .build();
+        workRepository.save(work1);
+        Work work2 = Work.builder()
+                .isMain(true)
+                .build();
+        workRepository.save(work2);
+        Work work3 = Work.builder()
+                .isMain(false)
+                .build();
+        workRepository.save(work3);
+        Work work4 = Work.builder()
+                .isMain(true)
+                .build();
+        workRepository.save(work4);
+
+        List<Work> workByIsMain = workRepository.getWorkByIsMain();
+        Assertions.assertEquals(3, workByIsMain.stream().filter(Work::getIsMain).count());
+    }
 
 }
