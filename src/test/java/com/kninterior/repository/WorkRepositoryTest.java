@@ -2,10 +2,7 @@ package com.kninterior.repository;
 
 import com.kninterior.domain.Work;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -47,5 +44,20 @@ class WorkRepositoryTest {
             workRepository.save(selectWork);
         });
     }
+
+    @Order(4)
+    @Test
+    public void delete() {
+        Optional<Work> work = workRepository.findById(1L);
+
+        Assertions.assertTrue(work.isPresent()); // true
+        work.ifPresent(selectWork -> {
+            workRepository.delete(selectWork);
+        });
+
+        Optional<Work> deleteWork = workRepository.findById(1L);
+        Assertions.assertFalse(deleteWork.isPresent()); // false
+    }
+
 
 }
