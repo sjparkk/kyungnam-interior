@@ -9,6 +9,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @Slf4j
@@ -23,5 +25,14 @@ class WorkRepositoryTest {
         Work work = new Work(20,"홍은동","test.jpg","빌라","빌라입니다.");
         Work newWork = workRepository.save(work);
         log.info("newWork : " + newWork);
+    }
+
+    @Order(2)
+    @Test
+    public void read() {
+        Optional<Work> work = workRepository.findById(1L);
+        work.ifPresent(selectWork -> {
+            log.info("work : " + selectWork);
+        });
     }
 }
