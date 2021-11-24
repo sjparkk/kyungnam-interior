@@ -567,7 +567,7 @@ transform / skew
 
 /*************Footer*********************/
 footer section.information {
-    background: rgb(222 222 222);
+    background: #313131;
     width: 100%;
     height: 220px;
     float: none;
@@ -577,16 +577,13 @@ footer section.information {
 footer section.information .footer-left {
     width: 30%;
     float: left;
-    background: rgb(222 222 222);
-    background: transparent;
+    color: #ffffff;
 }
 
 footer section.information .footer-center {
     width: 50%;
     float: left;
-    background: rgb(222 222 222);
-    background: transparent;
-    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
 }
 /*
 footer section.information .footer-left img {
@@ -602,8 +599,8 @@ footer section.information .footer-right {
 }
 
 footer section.copyright {
-    background: rgb(222 222 222);
-    color: rgb(0, 0, 0);
+    background: #313131;
+    color: #ffffff;
     padding: 20px 120px;
     font-size: 2px;
     font-family: 'Montserrat', sans-serif;
