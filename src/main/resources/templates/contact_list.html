@@ -13,7 +13,6 @@
 		<header class="common-header">
 			<h2>견적 조회</h2>
 		</header>
-
 		<div>
 			<form name="searchForm" action="/getSearchList" autocomplete="off" style="float: right; margin: 5px">
 				<select name="type" id="type">
@@ -26,7 +25,6 @@
 				<input type="button" id="search-btn" class="search-button" value="검색" style="font-size: 16px; padding: 3px 10px; border-radius: 10px">
 			</form>
 		</div>
-
 		<table class="table" id="contact_list">
 			<thead>
 				<tr>
@@ -36,18 +34,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="contact: ${contactList}" data-toggle="modal" data-target="#exampleModalCenter"> <!-- 추후 경우에 수 좀 더 수정  5글자보다 이상일때 -->
+				<tr th:each="contact: ${contactList}" data-toggle="modal" data-target="#exampleModalCenter">
 					<td th:text="${contact.id}"></td>
 					<td th:text="${contact.name}"></td>
-					<!--					<td th:if="${#strings.length(contact.name)==2}" th:text="${#strings.replace(contact.name, #strings.substring(contact.name,1,2), '*')}"></td>-->
-<!--					<td th:if="${#strings.length(contact.name)==3}" th:text="${#strings.replace(contact.name, #strings.substring(contact.name,1,2), '*')}"></td>-->
-<!--					<td th:if="${#strings.length(contact.name)==4}" th:text="${#strings.replace(contact.name, #strings.substring(contact.name,1,3), '**')}"></td>-->
-<!--					<td th:if="${#strings.length(contact.name) > 4}" th:text="${#strings.replace(contact.name, #strings.substring(contact.name,1,3), '**')}"></td>-->
 					<td th:text="${contact.address}"></td>
 				</tr>
 			</tbody>
 		</table>
-
 		<nav style="text-align: center;">
 			<ul class="pagination"
 				th:with="start=${T(Math).floor(contactList.number/10)*10 + 1},
@@ -57,23 +50,19 @@
 						<span aria-hidden="true">First</span>
 					</a>
 				</li>
-
 				<li th:class="${contactList.first} ? 'disabled'">
 					<a th:href="${contactList.first} ? '#' :@{/contact(page=${contactList.number})}" aria-label="Previous">
 						<span aria-hidden="true">&lt;</span>
 					</a>
 				</li>
-
 				<li th:each="page: ${#numbers.sequence(start, last)}" th:class="${page == contactList.number + 1} ? 'active'">
 					<a th:text="${page}" th:href="@{/contact/list(page=${page})}"></a>
 				</li>
-
 				<li th:class="${contactList.last} ? 'disabled'">
 					<a th:href="${contactList.last} ? '#' : @{/contact/list(page=${contactList.number + 2})}" aria-label="Next">
 						<span aria-hidden="true">&gt;</span>
 					</a>
 				</li>
-
 				<li>
 					<a th:href="@{/contact/list(page=${contactList.totalPages})}" aria-label="Last">
 						<span aria-hidden="true">Last</span>
@@ -93,7 +82,6 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-
 				<form id="pwdForm" name="pwdForm" method="post" action="/contact/list/form">
 					<input type="hidden" name="user-id" value="">
 					<div class="modal-body">
@@ -120,26 +108,18 @@
 				// $('input[name=inputNm]').attr('value',e.target.);
 				console.log("통과");
 			}
-
-
 		}
 		//비밀번호 확인창에 있는 확인 버튼 클릭시
 		$("#password").click(e => {
-			console.log(e);
 			checkPassword(e);
-
 		})
 
 		//문의글 클릭시
 		$("#contact_list tr").click(e => {
 			let passForm = document.pwdForm;
-
-			console.log(e.currentTarget.firstElementChild.textContent);
 			$('input[name=user-id]').attr('value',e.currentTarget.firstElementChild.textContent);
-
-			console.log($("#exampleModalCenter")[0].className.includes('show'));
 			if(!$("#exampleModalCenter")[0].className.includes('show')) {
-				document.getElementById('password').autofocus; // 왜 안되냐고.~~~
+				document.getElementById('password').autofocus;
 			}
 		})
 
@@ -155,7 +135,6 @@
 				searchForm.submit();
 			}
 		})
-
 		// function getSearchList(){
 		// 	$.ajax({
 		// 		type: 'GET',

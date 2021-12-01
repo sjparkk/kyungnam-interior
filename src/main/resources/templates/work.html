@@ -26,13 +26,12 @@
                         </a>
                         <div class="location-image">
                             <a th:href="@{/work/detail(id=${work.id})}">
-                                <img width="300" height="169" th:src="@{${work.thumnailImagePath}}"> <!-- th:src="@{/img/}+${work.thumnailImagePath}" -->
-                            </a> <!--ex_img3.png -->
+                                <img width="300" height="169" th:src="@{${work.thumnailImagePath}}">
+                            </a>
                         </div>
                         <input type = "hidden" th:value="${work.id + ' ' + work.isMain}" >
                     </article>
             </div>
-            <!-- end grid container -->
         </div>
         <footer id="common-footer">
         </footer>

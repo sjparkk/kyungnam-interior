@@ -13,12 +13,6 @@
             <span style="float: right"><img src="/img/asterisk.png" style="height: 10px; width: 10px; vertical-align: middle" alt="">필수입력항목</span>
             <hr>
             <table class="fTable mt20">
-                <colgroup>
-                    <col width="170px">
-                    <col width="">
-                    <col width="170px">
-                    <col width="">
-                </colgroup>
                 <tbody>
                 <tr>
                     <th>고객명 <img src="/img/asterisk.png" alt=""></th>
@@ -30,11 +24,7 @@
                     <th>연락처 <img src="/img/asterisk.png" alt=""></th>
                     <td colspan="3">
                         <input type="text" name="phone" id="phone" th:value="${contact.phone}" maxlength="4" class="ib50" placeholder="" onkeyup="inputLenNextField(this.value, 4,'phone2')">
-<!--                        - -->
-<!--                        <input type="text" name="phone2" id="phone2" value="" maxlength="4" class="ib50" placeholder="" onkeyup="inputLenNextField(this.value, 4,'phone3')">-->
-<!--                        - -->
-<!--                        <input type="text" name="phone3" id="phone3" value="" maxlength="4" class="ib50" placeholder="" onkeyup="inputLenNextField(this.value, 4,'email')">-->
-<!--                    </td>-->
+                    </td>
                 </tr>
                 <tr>
                     <th>이메일 <img src="/img/asterisk.png" alt=""></th>
@@ -175,10 +165,6 @@
         </footer>
     </section>
 
-    <script th:inline="javascript">
-
-    </script>
-
     <script>
         // 모든 인풋 박스와 select 박스 readonly 및 disabled 속성 추가함.
         $('input').prop('readonly', true);
@@ -191,10 +177,8 @@
             $('select').removeAttr("disabled");
         })
         // 수정 완료 버튼 클릭시 서버로 업데이트 요청 및 다시 readonly 속성 추가
-
         // 문의글 제거는 일단 추가 x 함.
     </script>
-
     <script src="/js/daumpost.js"></script>
     <script src="/js/scrollfollow.js"></script>
 </div>
