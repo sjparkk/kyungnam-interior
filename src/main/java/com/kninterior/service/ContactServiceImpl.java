@@ -91,10 +91,8 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public ContactDTO findById(Long id) {
-        Object result = contactRepository.findById(id).get();
-        ContactDTO contactDTO = entityToDTO((Contact) result);
-
-        return contactDTO;
+        Contact result = contactRepository.findById(id).get();
+        return entityToDTO(result);
     }
 
     @Override
