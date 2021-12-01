@@ -32,19 +32,6 @@ public class ContactController {
         return "contact";
     }
 
-    @GetMapping("/contact/list")
-    public String contactList(@PageableDefault Pageable pageable, Model model) {
-        Page<Contact> contactList = contactService.getList(pageable);
-        for( Contact contact : contactList) {
-            contact.setName(ContactUtil.getEncodeName(contact.getName()));
-        }
-        model.addAttribute("contactList", contactList);
-        log.debug("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
-                contactList.getTotalElements(), contactList.getTotalPages(), contactList.getSize(),
-                contactList.getNumber(), contactList.getNumberOfElements());
-        return "contact_list";
-    }
-
     @PostMapping("/contact/list/form")
     public String contactForm(@RequestParam("user-id") Long id, @RequestParam("password") String password, Model model, RedirectAttributes ra) throws Exception {
         boolean checkedVal = contactService.comparePassword(id, password);
@@ -68,13 +55,23 @@ public class ContactController {
     @GetMapping("/getSearchList")
     public String contactListByName(@PageableDefault Pageable pageable, @RequestParam("type") String type, @RequestParam("keyword") String name, Model model) {
         Page<Contact> contactListByKeyword = contactService.getListByKeyword(name, type, pageable);
-        for( Contact contact : contactListByKeyword) {
+        return getContactList(model, contactListByKeyword);
+    }
+
+    @GetMapping("/contact/list")
+    public String contactList(@PageableDefault Pageable pageable, Model model) {
+        Page<Contact> contactList = contactService.getList(pageable);
+        return getContactList(model, contactList);
+    }
+
+    private String getContactList(Model model, Page<Contact> contactList) {
+        for( Contact contact : contactList) {
             contact.setName(ContactUtil.getEncodeName(contact.getName()));
         }
-        model.addAttribute("contactList", contactListByKeyword);
+        model.addAttribute("contactList", contactList);
         log.debug("총 element 수 : {}, 전체 page 수 : {}, 페이지에 표시할 element 수 : {}, 현재 페이지 index : {}, 현재 페이지의 element 수 : {}",
-                contactListByKeyword.getTotalElements(), contactListByKeyword.getTotalPages(), contactListByKeyword.getSize(),
-                contactListByKeyword.getNumber(), contactListByKeyword.getNumberOfElements());
+                contactList.getTotalElements(), contactList.getTotalPages(), contactList.getSize(),
+                contactList.getNumber(), contactList.getNumberOfElements());
         return "contact_list";
     }
 }
