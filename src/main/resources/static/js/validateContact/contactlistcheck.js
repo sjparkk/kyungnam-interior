@@ -20,10 +20,7 @@ $("#contact_list tr").click(e => {
 let searchForm = document.searchForm;
 
 $("#search-btn").click( e => {
-    console.log($("#type").val());
-    console.log($("#type option:selected").val());
-
-    if ($("#keyword").val() == "" && $("#type option:selected").val() == "검색 내용 선택") {
+    if ($("#keyword").val() === "" && $("#type option:selected").val() === "검색 내용 선택") {
         alert("검색 내용을 선택해주세요.");
     } else {
         searchForm.submit();
