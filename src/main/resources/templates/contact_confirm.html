@@ -129,12 +129,12 @@
                         </select>
                     </td>
                 </tr>
-<!--                <tr>-->
-<!--                    <th>비밀번호 <img src="/img/asterisk.png" alt=""></th>-->
-<!--                    <td colspan="3">-->
-<!--                        <input type="text" name="custPwd" id="custPwd" maxlength="16" class="ib200" style="ime-mode:disabled;">  * 영문 ,숫자 조합의 4~16자리 (비밀번호는 수정/삭제시 필요하며, 암호화되어 저장됩니다)-->
-<!--                    </td>-->
-<!--                </tr>-->
+                <!--<tr>-->
+                <!--    <th>비밀번호 <img src="/img/asterisk.png" alt=""></th>-->
+                <!--    <td colspan="3">-->
+                <!--        <input type="text" name="custPwd" id="custPwd" maxlength="16" class="ib200" style="ime-mode:disabled;">  * 영문 ,숫자 조합의 4~16자리 (비밀번호는 수정/삭제시 필요하며, 암호화되어 저장됩니다)-->
+                <!--    </td>-->
+                <!--</tr>-->
                 <tr>
                     <th>문의사항 <img src="/img/asterisk.png" alt=""></th>
                     <td colspan="3">
@@ -158,9 +158,9 @@
         </fieldset>
         <footer id="common-footer">
             <!-- 견적 수정 기능은 일단 보류. -->
-<!--            <button class="contact-btn" id="contact-modify-btn">수정<i class="xi-long-arrow-right"></i></button>-->
-<!--            <br>-->
-<!--            <a href="send" class="contact-btn">확인<i class="xi-long-arrow-right"></i></a>-->
+            <!--<button class="contact-btn" id="contact-modify-btn">수정<i class="xi-long-arrow-right"></i></button>-->
+            <!--<br>-->
+            <!--<a href="send" class="contact-btn">확인<i class="xi-long-arrow-right"></i></a>-->
             <a href="/contact/list" class="contact-btn">문의 확인으로 이동<i class="xi-long-arrow-right"></i></a>
         </footer>
     </section>
@@ -171,11 +171,11 @@
         $('textarea').prop('readonly', true);
         $('select').attr("disabled","disabled");
         // 수정 버튼 클릭시 readonly 속성 제거됨
-        $('#contact-modify-btn').click( e => {
-            $('input').prop('readonly', false);
-            $('textarea').prop('readonly', false);
-            $('select').removeAttr("disabled");
-        })
+        // $('#contact-modify-btn').click( e => {
+        //     $('input').prop('readonly', false);
+        //     $('textarea').prop('readonly', false);
+        //     $('select').removeAttr("disabled");
+        // })
         // 수정 완료 버튼 클릭시 서버로 업데이트 요청 및 다시 readonly 속성 추가
         // 문의글 제거는 일단 추가 x 함.
     </script>
