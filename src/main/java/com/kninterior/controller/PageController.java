@@ -65,13 +65,6 @@ public class PageController { // 페이지 이동 관련 Controller
         return "work_detail";
     }
 
-    // test page
-    @GetMapping("test")
-    public String test() {
-        return "test";
-    }
-
-
     @GetMapping("/contact")
     public String contact() {
         return "contact";
