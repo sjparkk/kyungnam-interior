@@ -15,7 +15,7 @@ import java.util.List;
 @Log4j2
 @RequiredArgsConstructor
 public class WorkController {
-    private WorkService workService;
+    private final WorkService workService;
 
     @GetMapping("/work")
     public String work(Model model, @RequestParam(defaultValue = "0") int category) {
