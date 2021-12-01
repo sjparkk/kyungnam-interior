@@ -15,5 +15,4 @@ public interface WorkRepository extends JpaRepository<Work, Long> {
     //work 페이지 카테고리 정렬시 이용
     @Query("select w from Work w where w.category =:category")
     List<Work> getWorkByCategory(@Param("category") int category);
-
 }
