@@ -12,12 +12,7 @@ public class ContactUtil {
             return "***";
         }
 
-        StringBuilder replaceString = new StringBuilder("");
-        for (int i = 0; i < getEndIndex(name) - 1; i++) {
-            replaceString.append("*");
-        }
-
-        return replaceString.toString();
+        return "" + "*".repeat(Math.max(0, getEndIndex(name) - 1));
     }
 
     private static int getEndIndex(String name) {
