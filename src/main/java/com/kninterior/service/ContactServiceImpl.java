@@ -23,15 +23,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Service // 인터페이스는 컴포넌트 스캔 대상에서 제외되기 때문에 인터페이스가 아닌 구현체에 @Service 어노테이션을 붙여야한다.
 public class ContactServiceImpl implements ContactService {
+    private static final int SALT_SIZE = 16;
 
     private final ContactRepository contactRepository;
-
-    private static final int SALT_SIZE = 16;
 
     @Override
     public void sendMessage(ContactDTO contactDTO) {
         RestTemplate restTemplate = new RestTemplate();
-
         Map<String,Object> request = new HashMap<>();
         request.put("username", "문의알림");
         String text = String.format("견적문의가 들어왔습니다.\n`고객명`: %s\n`연락처`: %s\n" +
@@ -45,7 +43,6 @@ public class ContactServiceImpl implements ContactService {
         request.put("text", text);
 
         HttpEntity<Map<String,Object>> entity = new HttpEntity<Map<String,Object>>(request);
-
         String url = "https://hooks.slack.com/services/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"; // 사용할 슬랙의 Webhook URL 넣기
         // 신종 URL : https://hooks.slack.com/services/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
         // 경남인테리어 URL : https://hooks.slack.com/services/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
@@ -56,25 +53,20 @@ public class ContactServiceImpl implements ContactService {
     public Long register(ContactDTO dto) {
         Contact contact = dtoToEntity(dto);
         contactRepository.save(contact);
+
         return contact.getId();
     }
 
     @Override
     public ContactDTO get(Long id) {
         Object result = contactRepository.findAll();
-
         Object[] arr = (Object[]) result;
+
         return entityToDTO((Contact) arr[0]);
     }
 
     @Override
-    public void modify(ContactDTO boardDTO) {
-
-    }
-
-    @Override
     public Page<Contact> getList(Pageable pageable) {
-
         int page = (pageable.getPageNumber() == 0) ? 0 : (pageable.getPageNumber() - 1); // page는 index 처럼 0부터 시작
         Sort sort = Sort.by(Sort.Order.desc("id"));
         pageable = PageRequest.of(page, 10, sort);
@@ -88,7 +80,6 @@ public class ContactServiceImpl implements ContactService {
         Sort sort = Sort.by(Sort.Order.desc("id"));
         pageable = PageRequest.of(page, 10, sort);
 
-
         if(type.equals("address")) {
             return contactRepository.getContactByAddress(keyword, pageable);
         } else if(type.equals("name")) {
@@ -96,7 +87,6 @@ public class ContactServiceImpl implements ContactService {
         } else {
             return contactRepository.findAll(pageable);
         }
-
     }
 
     @Override
@@ -110,12 +100,10 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void saveContact(ContactDTO contactDTO) throws Exception {
         Contact contact = dtoToEntity(contactDTO);
-
         String password = contact.getPassword();
         String saltVal = getSALT();
         String hashPassword = Hashing(password,saltVal);
 
-        System.out.println("11111"+password + " " +saltVal + " " + hashPassword);
         contact.saveHashPassword(hashPassword); // hash 값으로 변경 후 저장
         contact.createSalt(saltVal); // salt 값 개별 저장
         contactRepository.save(contact);
@@ -124,9 +112,6 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public boolean comparePassword(Long id, String password) throws Exception {
         String existSalt = contactRepository.findById(id).get().getSalt(); // 해당 유저의 salt 값 가져옴
-
-        System.out.println("22222"+password +" "+existSalt+"  "+Hashing(password,existSalt));
-
         return Hashing(password,existSalt).equals(contactRepository.findById(id).get().getPassword());
     }
 
@@ -137,9 +122,7 @@ public class ContactServiceImpl implements ContactService {
 
     // 비밀번호 해싱
     private String Hashing(String password, String Salt) throws Exception {
-
         MessageDigest md = MessageDigest.getInstance("SHA-256");	// SHA-256 해시함수를 사용
-
         String temp = password + Salt;	// 패스워드와 Salt 를 합쳐 새로운 문자열 생성
         md.update(temp.getBytes());		// temp 의 문자열을 해싱하여 md 에 저장해둔다
         byte[] transPwd = md.digest();  // md 객체의 다이제스트를 얻어 password 를 갱신한다
@@ -154,7 +137,6 @@ public class ContactServiceImpl implements ContactService {
         rnd.nextBytes(temp);
 
         return Byte_to_String(temp);
-
     }
 
     // 바이트 값을 16진수로 변경해준다
@@ -165,7 +147,4 @@ public class ContactServiceImpl implements ContactService {
         }
         return sb.toString();
     }
-
-
-
 }

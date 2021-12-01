@@ -16,8 +16,6 @@ public interface ContactService {
 
     ContactDTO get(Long bno);
 
-    void modify(ContactDTO boardDTO);
-
     Page<Contact> getList(Pageable pageable);
 
     Page<Contact> getListByKeyword(String keyword, String type, Pageable pageable);
