@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.security.MessageDigest;
@@ -95,6 +96,7 @@ public class ContactServiceImpl implements ContactService {
         return entityToDTO(result);
     }
 
+    @Transactional
     @Override
     public void saveContact(ContactDTO contactDTO) throws Exception {
         Contact contact = dtoToEntity(contactDTO);
